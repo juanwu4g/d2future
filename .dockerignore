@@ -1,0 +1,21 @@
+# Keep the build context lean.
+.git
+.gitignore
+.venv
+venv
+env
+__pycache__
+*.py[cod]
+.pytest_cache
+.ruff_cache
+
+# Docs / meta not needed in the image
+README.md
+document.pdf
+CLAUDE.md
+
+# Editor / OS junk
+.DS_Store
+.idea
+.vscode
+*.swp
