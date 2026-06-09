@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>d2future — Forward-Deployed Engineering, Tokyo</title>
+    <meta
+      name="description"
+      content="d2future is a Tokyo-based forward-deployed engineering firm building AI agents, cloud native systems, and data engineering."
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+
+    <header class="site-header">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="#hero">d2future</a>
+        <ul class="nav-links">
+          <li><a href="#about" data-i18n="nav.about">About</a></li>
+          <li><a href="#services" data-i18n="nav.services">Services</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+        <button
+          id="lang-toggle"
+          class="lang-toggle"
+          type="button"
+          aria-label="Switch language"
+        >
+          日本語
+        </button>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- Hero -->
+      <section id="hero" class="hero">
+        <div class="container">
+          <p class="eyebrow" data-i18n="hero.eyebrow">Tokyo · Forward-Deployed Engineering</p>
+          <h1 data-i18n="hero.title">We embed with your team and ship.</h1>
+          <p class="lede" data-i18n="hero.lede">
+            d2future is a forward-deployed engineering firm building AI agents,
+            cloud native platforms, and data systems — in production, alongside you.
+          </p>
+          <a class="btn btn-primary" href="#contact" data-i18n="hero.cta">Start a conversation</a>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="about" class="section">
+        <div class="container">
+          <h2 data-i18n="about.title">About</h2>
+          <p data-i18n="about.p1">
+            We are a small team of senior engineers based in Tokyo. We work the way
+            the best internal teams do: embedded, accountable, and close to the problem —
+            not handing over slides and walking away.
+          </p>
+          <p data-i18n="about.p2">
+            Our focus is narrow on purpose. We take on work in AI agents, cloud native
+            infrastructure, and data engineering, where deep practice beats broad coverage.
+            We ship to production and stay until it runs.
+          </p>
+          <p data-i18n="about.p3">
+            Reserved by temperament, direct in our work. We would rather earn trust through
+            systems that hold up than through promises that sound good in a meeting.
+          </p>
+        </div>
+      </section>
+
+      <!-- Services -->
+      <section id="services" class="section section-alt">
+        <div class="container">
+          <h2 data-i18n="services.title">Services</h2>
+          <div class="cards">
+            <article class="card">
+              <h3 data-i18n="services.ai.title">AI Agent Engineering</h3>
+              <p data-i18n="services.ai.body">
+                Production agents that do real work — tool use, retrieval, and
+                evaluation built in. We design for reliability, not demos.
+              </p>
+            </article>
+            <article class="card">
+              <h3 data-i18n="services.cloud.title">Cloud Native</h3>
+              <p data-i18n="services.cloud.body">
+                Containers, CI/CD, and observability done well. Infrastructure your
+                team can operate, scale, and reason about with confidence.
+              </p>
+            </article>
+            <article class="card">
+              <h3 data-i18n="services.data.title">Data Engineering</h3>
+              <p data-i18n="services.data.body">
+                Pipelines and platforms that turn raw data into something teams trust —
+                tested, documented, and ready for analytics and AI.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="section">
+        <div class="container container-narrow">
+          <h2 data-i18n="contact.title">Contact</h2>
+          <p data-i18n="contact.intro">
+            Tell us what you are building. We read every message.
+          </p>
+          <form id="contact-form" novalidate>
+            <div class="field">
+              <label for="name" data-i18n="contact.name">Name</label>
+              <input id="name" name="name" type="text" required autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="email" data-i18n="contact.email">Email</label>
+              <input id="email" name="email" type="email" required autocomplete="email" />
+            </div>
+            <div class="field">
+              <label for="message" data-i18n="contact.message">Message</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit" data-i18n="contact.submit">
+              Send message
+            </button>
+            <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>
+          <span class="brand-sm">d2future</span> ·
+          <span id="year"></span> · <span data-i18n="footer.location">Tokyo, Japan</span>
+        </p>
+      </div>
+    </footer>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

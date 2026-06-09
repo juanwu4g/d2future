@@ -1,0 +1,303 @@
+/* d2future homepage — plain, mobile-first CSS. No framework, no build step. */
+
+:root {
+  --bg: #0f1115;
+  --bg-alt: #161922;
+  --surface: #1c2030;
+  --text: #e8eaf0;
+  --muted: #a3a9bd;
+  --accent: #5b8cff;
+  --accent-ink: #ffffff;
+  --border: #2a2f40;
+  --maxw: 1120px;
+  --radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", "Helvetica Neue",
+    "Hiragino Sans", "Noto Sans JP", sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.container-narrow {
+  max-width: 640px;
+}
+
+/* Accessible focus + skip link */
+a,
+button {
+  outline-offset: 3px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 0.5rem 1rem;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+/* Header / nav */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(15, 17, 21, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem;
+}
+
+.brand {
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.25rem;
+  list-style: none;
+  margin: 0 auto 0 1.5rem;
+  padding: 0;
+}
+
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+.lang-toggle {
+  margin-left: auto;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.lang-toggle:hover {
+  border-color: var(--accent);
+}
+
+/* Hero */
+.hero {
+  padding: clamp(3rem, 10vw, 7rem) 0;
+  background: radial-gradient(
+    120% 120% at 50% 0%,
+    var(--bg-alt) 0%,
+    var(--bg) 60%
+  );
+  border-bottom: 1px solid var(--border);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  color: var(--accent);
+  margin: 0 0 0.75rem;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 6vw, 3.25rem);
+  line-height: 1.1;
+  margin: 0 0 1rem;
+  max-width: 16ch;
+}
+
+.lede {
+  font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+  color: var(--muted);
+  max-width: 56ch;
+  margin: 0 0 2rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius);
+  padding: 0.8rem 1.4rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  font-size: 1rem;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.08);
+}
+
+/* Sections */
+.section {
+  padding: clamp(3rem, 8vw, 5.5rem) 0;
+}
+
+.section-alt {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.section h2 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin: 0 0 1.5rem;
+}
+
+.section p {
+  color: var(--muted);
+  max-width: 65ch;
+}
+
+/* Service cards */
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.card h3 {
+  margin: 0 0 0.6rem;
+  font-size: 1.2rem;
+  color: var(--text);
+}
+
+.card p {
+  margin: 0;
+  font-size: 0.97rem;
+}
+
+/* Contact form */
+form {
+  margin-top: 1.5rem;
+}
+
+.field {
+  margin-bottom: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field label {
+  font-size: 0.9rem;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.field input,
+.field textarea {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 0.7rem 0.85rem;
+  font: inherit;
+  width: 100%;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.form-status {
+  margin-top: 1rem;
+  min-height: 1.4rem;
+  font-size: 0.95rem;
+}
+
+.form-status.success {
+  color: #59d99d;
+}
+
+.form-status.error {
+  color: #ff8087;
+}
+
+/* Footer */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.brand-sm {
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Desktop layout (1440px target sits comfortably here) */
+@media (min-width: 720px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .nav-links {
+    display: none; /* keep the 375px header uncluttered; anchors still reachable via hero CTA */
+  }
+}
