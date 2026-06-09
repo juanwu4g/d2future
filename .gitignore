@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local project meta (the take-home brief and build notes — not part of the deliverable)
+document.pdf
+CLAUDE.md
+
+# Editor / OS junk
+.DS_Store
+.idea/
+.vscode/
+*.swp

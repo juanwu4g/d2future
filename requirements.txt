@@ -1,0 +1,9 @@
+# Runtime dependencies (pinned for reproducible Docker builds).
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+
+# Test-only dependencies. Installed in dev/CI; excluded from the final image
+# via a separate pip install step is overkill for this size, so they ship too —
+# httpx is what Starlette's TestClient uses under the hood.
+httpx==0.28.1
+pytest==8.3.4
