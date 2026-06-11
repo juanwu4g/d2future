@@ -71,6 +71,9 @@
       "hero.lede":
         "d2future is a forward-deployed engineering firm building AI agents, cloud native platforms, and data systems — in production, alongside you.",
       "hero.cta": "Start a conversation",
+      "stats.engineers": "Senior engineers",
+      "stats.areas": "Focus areas",
+      "stats.shipped": "Systems shipped to production",
       "about.title": "About",
       "about.p1":
         "We are a small team of senior engineers based in Tokyo. We work the way the best internal teams do: embedded, accountable, and close to the problem — not handing over slides and walking away.",
@@ -119,6 +122,9 @@
       "hero.lede":
         "d2future は、AIエージェント・クラウドネイティブ・データ基盤を、お客様と共に本番環境で構築するフォワードデプロイド・エンジニアリングファームです。",
       "hero.cta": "相談をはじめる",
+      "stats.engineers": "シニアエンジニア",
+      "stats.areas": "注力領域",
+      "stats.shipped": "本番投入したシステム",
       "about.title": "会社概要",
       "about.p1":
         "私たちは東京を拠点とする少数精鋭のシニアエンジニアチームです。資料を渡して終わりではなく、現場に入り込み、責任を持って課題に向き合います。",
