@@ -6,6 +6,8 @@ firm (AI Agents, Cloud Native, Data Engineering), shipped as **one Docker contai
 It serves a static frontend plus a tiny FastAPI backend: a health check and a contact
 endpoint that logs submissions to stdout (no email, no database).
 
+**Time spent:** about 8 hours, within the brief's ~1 day budget.
+
 ---
 
 ## Quick start
