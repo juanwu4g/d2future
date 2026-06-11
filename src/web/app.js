@@ -66,6 +66,7 @@
       "nav.about": "About",
       "nav.services": "Services",
       "nav.contact": "Contact",
+      "nav.cta": "Let's talk",
       "hero.eyebrow": "Tokyo · Forward-Deployed Engineering",
       "hero.title": "We embed with your team and ship.",
       "hero.lede":
@@ -117,6 +118,7 @@
       "nav.about": "会社概要",
       "nav.services": "サービス",
       "nav.contact": "お問い合わせ",
+      "nav.cta": "相談する",
       "hero.eyebrow": "東京・フォワードデプロイド・エンジニアリング",
       "hero.title": "チームに入り込み、形にする。",
       "hero.lede":
