@@ -45,6 +45,7 @@ keeps it reasonably small (~256 MB) and sensible to operate.
 .
 ├── Dockerfile            # multi-stage, non-root, HEALTHCHECK
 ├── .dockerignore
+├── .github/workflows/ci.yml  # build image, in-image pytest, smoke test
 ├── requirements.txt      # pinned: fastapi, uvicorn[standard], httpx, pytest
 ├── README.md
 └── src/
@@ -84,6 +85,8 @@ docker run --rm --entrypoint pytest d2future-homepage
 - Accessible basics: semantic HTML, labels tied to inputs, visible focus states, skip link.
 - **Bilingual JP/EN toggle** (client-side, no dependencies) — appropriate for a Tokyo firm.
 - `HEALTHCHECK` using only the Python stdlib (no `curl` in the image).
+- **CI** (GitHub Actions): every push builds the image, runs the tests inside it, and
+  smoke-tests `/health` and `/api/contact` against a running container.
 
 ---
 
@@ -107,16 +110,16 @@ The brief invites reasonable assumptions where the spec is open:
   a webhook (e.g. Slack/email) behind an interface so the storage choice stays swappable.
 - **i18n:** the JP/EN toggle uses an inline string map. At scale I'd move copy to JSON
   locale files and persist the choice (localStorage / `Accept-Language`).
-- **CI:** I'd add a GitHub Actions workflow to build the image and run `ruff` + `pytest` on
-  every push.
+- **CI:** the GitHub Actions workflow builds and smoke-tests the image; I'd extend it to
+  run `ruff` and publish the image to a registry.
 - **Testing:** current tests cover the gates; I'd add a small frontend smoke test
   (Playwright) for the form flow.
 
 ## Not finished / out of scope (by design)
 
 Per the brief, the following were intentionally **not** built: Kubernetes manifests, real
-email/database, production auth or rate limiting, multi-arch images, TLS/reverse-proxy, and
-CI. Exhaustive tests were also out of scope — there are four meaningful tests.
+email/database, production auth or rate limiting, multi-arch images, and TLS/reverse-proxy.
+Exhaustive tests were also out of scope — there are four meaningful tests.
 
 ---
 

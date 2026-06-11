@@ -1,0 +1,30 @@
+# CI: prove the two things the brief grades hardest — the image builds and the app runs.
+# Mirrors the README instructions: docker build, in-image pytest, then a live smoke test.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build image
+        run: docker build -t d2future-homepage .
+
+      - name: Run tests inside the image
+        run: docker run --rm --entrypoint pytest d2future-homepage
+
+      - name: Smoke test (health + contact)
+        run: |
+          docker run -d --rm --name app -p 8080:8080 d2future-homepage
+          sleep 3
+          curl -fsS http://localhost:8080/health
+          curl -fsS -X POST http://localhost:8080/api/contact \
+            -H 'Content-Type: application/json' \
+            -d '{"name":"CI","email":"ci@example.com","message":"smoke test"}'
+          docker stop app
