@@ -12,6 +12,7 @@ env/
 # Local project meta (the take-home brief and build notes — not part of the deliverable)
 document.pdf
 CLAUDE.md
+docs/
 
 # Editor / OS junk
 .DS_Store
