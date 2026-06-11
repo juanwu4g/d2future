@@ -78,6 +78,16 @@
         "Our focus is narrow on purpose. We take on work in AI agents, cloud native infrastructure, and data engineering, where deep practice beats broad coverage. We ship to production and stay until it runs.",
       "about.p3":
         "Reserved by temperament, direct in our work. We would rather earn trust through systems that hold up than through promises that sound good in a meeting.",
+      "facts.company": "Company",
+      "facts.founded": "Founded",
+      "facts.founded.value": "2021",
+      "facts.location": "Location",
+      "facts.location.value": "Tokyo, Japan",
+      "facts.team": "Team",
+      "facts.team.value": "12 engineers",
+      "facts.business": "Business",
+      "facts.business.value":
+        "Forward-deployed engineering for AI agents, cloud native systems, and data platforms",
       "services.title": "Services",
       "services.ai.title": "AI Agent Engineering",
       "services.ai.body":
@@ -116,6 +126,16 @@
         "対象領域はあえて絞っています。AIエージェント、クラウドネイティブ基盤、データエンジニアリング。広く浅くより、深い実践を重視します。本番に届け、動くまで伴走します。",
       "about.p3":
         "控えめな気質、実務には率直に。聞こえの良い約束ではなく、確かに動き続けるシステムで信頼を得たいと考えています。",
+      "facts.company": "会社名",
+      "facts.founded": "設立",
+      "facts.founded.value": "2021年",
+      "facts.location": "所在地",
+      "facts.location.value": "東京都",
+      "facts.team": "メンバー",
+      "facts.team.value": "エンジニア12名",
+      "facts.business": "事業内容",
+      "facts.business.value":
+        "AIエージェント・クラウドネイティブ・データ基盤のフォワードデプロイド・エンジニアリング",
       "services.title": "サービス",
       "services.ai.title": "AIエージェント開発",
       "services.ai.body":

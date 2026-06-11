@@ -202,6 +202,36 @@ button {
   max-width: 65ch;
 }
 
+/* Company facts (会社概要-style block) */
+.facts {
+  margin: 2.5rem 0 0;
+  max-width: 640px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.facts > div {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: 1rem;
+  padding: 0.7rem 1rem;
+}
+
+.facts > div + div {
+  border-top: 1px solid var(--border);
+}
+
+.facts dt {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.facts dd {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
 /* Service cards */
 .cards {
   display: grid;
