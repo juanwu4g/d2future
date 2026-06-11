@@ -99,8 +99,10 @@ The brief invites reasonable assumptions where the spec is open:
 - **Port 8080** chosen for HTTP (documented above; avoids privileged port 80 for the
   non-root user).
 - **Stack** was my choice (FastAPI) — see rationale above.
-- **All marketing copy is invented** (mission, team description, service blurbs). It aims
-  for the requested tone: simple, confident, technical, reserved.
+- **All marketing copy is invented** (mission, team description, service blurbs), as are
+  the concrete figures (founded 2021, 12 engineers, 30+ systems shipped) and the company
+  facts table — the brief invites plausible invented content. It aims for the requested
+  tone: simple, confident, technical, reserved.
 - The contact form's "real" action is **logging the payload to stdout** and returning a
   success JSON response, as the brief permits — no email or persistence.
 - Email is validated with a light regex rather than the `email-validator` package, to keep
