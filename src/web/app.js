@@ -82,6 +82,7 @@
         "Our focus is narrow on purpose. We take on work in AI agents, cloud native infrastructure, and data engineering, where deep practice beats broad coverage. We ship to production and stay until it runs.",
       "about.p3":
         "Reserved by temperament, direct in our work. We would rather earn trust through systems that hold up than through promises that sound good in a meeting.",
+      "about.photo.alt": "An engineer's workstation with code on screen",
       "facts.company": "Company",
       "facts.founded": "Founded",
       "facts.founded.value": "2021",
@@ -134,6 +135,7 @@
         "対象領域はあえて絞っています。AIエージェント、クラウドネイティブ基盤、データエンジニアリング。広く浅くより、深い実践を重視します。本番に届け、動くまで伴走します。",
       "about.p3":
         "控えめな気質、実務には率直に。聞こえの良い約束ではなく、確かに動き続けるシステムで信頼を得たいと考えています。",
+      "about.photo.alt": "コードが表示されたエンジニアの作業環境",
       "facts.company": "会社名",
       "facts.founded": "設立",
       "facts.founded.value": "2021年",
@@ -180,6 +182,10 @@
       const key = el.getAttribute("data-i18n");
       const value = t(key);
       if (value) el.textContent = value;
+    });
+    document.querySelectorAll("[data-i18n-alt]").forEach(function (el) {
+      const value = t(el.getAttribute("data-i18n-alt"));
+      if (value) el.alt = value;
     });
     const toggle = document.getElementById("lang-toggle");
     if (toggle) {

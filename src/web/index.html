@@ -99,7 +99,8 @@
 
       <!-- About -->
       <section id="about" class="section">
-        <div class="container">
+        <div class="container about-grid">
+          <div class="about-text">
           <h2 data-i18n="about.title">About</h2>
           <p data-i18n="about.p1">
             We are a small team of senior engineers based in Tokyo. We work the way
@@ -115,6 +116,16 @@
             Reserved by temperament, direct in our work. We would rather earn trust through
             systems that hold up than through promises that sound good in a meeting.
           </p>
+          </div>
+          <img
+            class="about-photo"
+            src="/img/about-workspace.jpg"
+            width="1000"
+            height="700"
+            loading="lazy"
+            alt="An engineer's workstation with code on screen"
+            data-i18n-alt="about.photo.alt"
+          />
           <dl class="facts">
             <div>
               <dt data-i18n="facts.company">Company</dt>
@@ -149,42 +160,51 @@
           <h2 data-i18n="services.title">Services</h2>
           <div class="cards">
             <article class="card">
-              <svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <circle cx="5" cy="12" r="2.2" />
-                <circle cx="19" cy="5" r="2.2" />
-                <circle cx="19" cy="19" r="2.2" />
-                <path d="M7.1 11 16.9 5.8M7.1 13l9.8 5.2" />
-              </svg>
-              <h3 data-i18n="services.ai.title">AI Agent Engineering</h3>
-              <p data-i18n="services.ai.body">
-                Production agents that do real work — tool use, retrieval, and
-                evaluation built in. We design for reliability, not demos.
-              </p>
+              <img class="card-photo" src="/img/card-code.jpg" width="800" height="520" loading="lazy" alt="" />
+              <div class="card-body">
+                <svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="5" cy="12" r="2.2" />
+                  <circle cx="19" cy="5" r="2.2" />
+                  <circle cx="19" cy="19" r="2.2" />
+                  <path d="M7.1 11 16.9 5.8M7.1 13l9.8 5.2" />
+                </svg>
+                <h3 data-i18n="services.ai.title">AI Agent Engineering</h3>
+                <p data-i18n="services.ai.body">
+                  Production agents that do real work — tool use, retrieval, and
+                  evaluation built in. We design for reliability, not demos.
+                </p>
+              </div>
             </article>
             <article class="card">
-              <svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <rect x="3.5" y="3.5" width="7.5" height="7.5" rx="1.5" />
-                <rect x="3.5" y="13" width="7.5" height="7.5" rx="1.5" />
-                <rect x="13" y="3.5" width="7.5" height="7.5" rx="1.5" />
-                <path d="M13.5 16.75h6.5M16.75 13.5V20" />
-              </svg>
-              <h3 data-i18n="services.cloud.title">Cloud Native</h3>
-              <p data-i18n="services.cloud.body">
-                Containers, CI/CD, and observability done well. Infrastructure your
-                team can operate, scale, and reason about with confidence.
-              </p>
+              <img class="card-photo" src="/img/card-servers.jpg" width="800" height="520" loading="lazy" alt="" />
+              <div class="card-body">
+                <svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="3.5" y="3.5" width="7.5" height="7.5" rx="1.5" />
+                  <rect x="3.5" y="13" width="7.5" height="7.5" rx="1.5" />
+                  <rect x="13" y="3.5" width="7.5" height="7.5" rx="1.5" />
+                  <path d="M13.5 16.75h6.5M16.75 13.5V20" />
+                </svg>
+                <h3 data-i18n="services.cloud.title">Cloud Native</h3>
+                <p data-i18n="services.cloud.body">
+                  Containers, CI/CD, and observability done well. Infrastructure your
+                  team can operate, scale, and reason about with confidence.
+                </p>
+              </div>
             </article>
             <article class="card">
-              <svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <ellipse cx="12" cy="5.2" rx="7.5" ry="2.7" />
-                <path d="M4.5 5.2v6.8c0 1.5 3.36 2.7 7.5 2.7s7.5-1.2 7.5-2.7V5.2" />
-                <path d="M4.5 12v6.8c0 1.5 3.36 2.7 7.5 2.7s7.5-1.2 7.5-2.7V12" />
-              </svg>
-              <h3 data-i18n="services.data.title">Data Engineering</h3>
-              <p data-i18n="services.data.body">
-                Pipelines and platforms that turn raw data into something teams trust —
-                tested, documented, and ready for analytics and AI.
-              </p>
+              <img class="card-photo" src="/img/card-dashboard.jpg" width="800" height="520" loading="lazy" alt="" />
+              <div class="card-body">
+                <svg class="card-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <ellipse cx="12" cy="5.2" rx="7.5" ry="2.7" />
+                  <path d="M4.5 5.2v6.8c0 1.5 3.36 2.7 7.5 2.7s7.5-1.2 7.5-2.7V5.2" />
+                  <path d="M4.5 12v6.8c0 1.5 3.36 2.7 7.5 2.7s7.5-1.2 7.5-2.7V12" />
+                </svg>
+                <h3 data-i18n="services.data.title">Data Engineering</h3>
+                <p data-i18n="services.data.body">
+                  Pipelines and platforms that turn raw data into something teams trust —
+                  tested, documented, and ready for analytics and AI.
+                </p>
+              </div>
             </article>
           </div>
         </div>

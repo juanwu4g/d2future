@@ -103,6 +103,9 @@ The brief invites reasonable assumptions where the spec is open:
   the concrete figures (founded 2021, 12 engineers, 30+ systems shipped) and the company
   facts table — the brief invites plausible invented content. It aims for the requested
   tone: simple, confident, technical, reserved.
+- **Imagery is stock photography** from Unsplash (free Unsplash License, no attribution
+  required) committed into the repo so the container stays self-contained — no real
+  d2future offices or staff are shown.
 - The contact form's "real" action is **logging the payload to stdout** and returning a
   success JSON response, as the brief permits — no email or persistence.
 - Email is validated with a light regex rather than the `email-validator` package, to keep
