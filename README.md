@@ -22,6 +22,8 @@ Then open **http://localhost:8080**.
 - Health check: `GET http://localhost:8080/health` → `{"status":"ok"}`
 - Contact form posts to `POST /api/contact`; submissions appear in the container's
   stdout (`docker logs`).
+- News: `GET /api/news?limit=3` — served from the bundled `news.json` by default,
+  or from Postgres when configured (see "News & the optional database" below).
 
 > **Port:** the app listens on **8080** (HTTP). Change it in `Dockerfile` (the `EXPOSE`
 > + `CMD`) and the `-p` flag above if needed.
@@ -46,18 +48,54 @@ keeps it reasonably small (~256 MB) and sensible to operate.
 ```
 .
 ├── Dockerfile            # multi-stage, non-root, HEALTHCHECK
+├── docker-compose.yml    # optional: app + local Postgres, auto-seeded
 ├── .dockerignore
 ├── .github/workflows/ci.yml  # build image, in-image pytest, smoke test
-├── requirements.txt      # pinned: fastapi, uvicorn[standard], httpx, pytest
+├── requirements.txt      # pinned: fastapi, uvicorn, sqlalchemy, psycopg, httpx, pytest
 ├── README.md
 └── src/
-    ├── main.py           # FastAPI app: /health, /api/contact, static mount
+    ├── main.py           # FastAPI app: routes, static mount, news source selection
+    ├── news.py           # news model + sources (bundled JSON / Postgres)
+    ├── news.json         # bundled news items (and DB seed data)
+    ├── seed_news.py      # creates + seeds the news table
     ├── test_main.py      # pytest + TestClient tests
     └── web/
-        ├── index.html    # hero, about, services, contact, footer
+        ├── index.html    # hero, about, services, news, contact, footer
         ├── styles.css    # responsive, mobile-first
-        └── app.js        # form fetch() + JP/EN toggle
+        ├── app.js        # form fetch(), news rendering, JP/EN toggle
+        └── img/          # stock photography (Unsplash license)
 ```
+
+## News & the optional database
+
+The news section is backed by `GET /api/news`, which reads from one of two
+interchangeable sources:
+
+- **Default — no setup:** the bundled `src/news.json`. A bare `docker run` needs
+  no accounts, secrets, or network beyond the container itself.
+- **Postgres — when `DATABASE_URL` is set** (Supabase in production):
+
+  ```bash
+  # one-time: create the table and load the bundled items
+  docker run --rm -e DATABASE_URL="postgresql://..." --entrypoint python d2future-homepage seed_news.py
+
+  # run the site against the database
+  docker run --rm -p 8080:8080 -e DATABASE_URL="postgresql://..." d2future-homepage
+  ```
+
+  News is then published by inserting rows (e.g. in Supabase Studio's table
+  editor) — items appear on the site without a redeploy. If the database is
+  unreachable, the endpoint logs a warning and serves the bundled items: news
+  can degrade, the homepage cannot.
+
+- **Full local stack:** `docker compose up` starts the app plus a throwaway
+  Postgres, seeded automatically — no cloud account needed.
+
+Supabase notes: use the **transaction pooler** connection string (port 6543 —
+the direct host is IPv6-only and unreachable from many networks); free-tier
+projects pause after ~a week idle and need a manual wake in the dashboard.
+The connection string is a secret: it is passed at runtime and never baked
+into the image or committed (`*.env` is git- and docker-ignored).
 
 ## Run locally without Docker
 
@@ -86,6 +124,7 @@ docker run --rm --entrypoint pytest d2future-homepage
 - Responsive layout, checked at **375px** (phone) and **1440px** (desktop).
 - Accessible basics: semantic HTML, labels tied to inputs, visible focus states, skip link.
 - **Bilingual JP/EN toggle** (client-side, no dependencies) — appropriate for a Tokyo firm.
+- **News section** with a swappable backend (bundled JSON or Postgres/Supabase).
 - `HEALTHCHECK` using only the Python stdlib (no `curl` in the image).
 - **CI** (GitHub Actions): every push builds the image, runs the tests inside it, and
   smoke-tests `/health` and `/api/contact` against a running container.
@@ -106,6 +145,11 @@ The brief invites reasonable assumptions where the spec is open:
 - **Imagery is stock photography** from Unsplash (free Unsplash License, no attribution
   required) committed into the repo so the container stays self-contained — no real
   d2future offices or staff are shown.
+- **News items are invented** like the rest of the copy. The database is optional by
+  design: the original brief's "runs with just docker build + docker run" gate must keep
+  passing, so Postgres activates only via `DATABASE_URL` and the JSON fallback always
+  ships. With one table, `create_all` in the seed script stands in for migrations —
+  Alembic earns its place at the second migration, not the first.
 - The contact form's "real" action is **logging the payload to stdout** and returning a
   success JSON response, as the brief permits — no email or persistence.
 - Email is validated with a light regex rather than the `email-validator` package, to keep
