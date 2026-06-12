@@ -1,21 +1,27 @@
 """d2future homepage — FastAPI application.
 
-Serves a single static page and two small JSON endpoints:
+Serves a single static page and three small JSON endpoints:
 
 * ``GET  /health``       liveness check (used by the Docker HEALTHCHECK)
 * ``POST /api/contact``  accepts a contact message, logs it to stdout, returns ok
+* ``GET  /api/news``     company news items, newest first
 
-No database and no email are involved — submissions are written to the
-container's stdout, which is the verifiable side effect required by the brief.
+Contact submissions are written to the container's stdout, which is the
+verifiable side effect required by the brief. News is read from the bundled
+``news.json`` so the container runs standalone; a database-backed source can
+sit behind the same endpoint later.
 """
 
 from __future__ import annotations
 
+import datetime as dt
+import json
 import logging
 import re
 from pathlib import Path
+from typing import Annotated, Literal
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field, field_validator
@@ -59,6 +65,37 @@ class ContactRequest(BaseModel):
         return value
 
 
+class NewsItem(BaseModel):
+    """One news entry, carrying both languages so the client toggle needs no extra fetch."""
+
+    date: dt.date
+    category: Literal["press", "news", "tech"]
+    title_en: str
+    title_ja: str
+    excerpt_en: str
+    excerpt_ja: str
+
+
+class JsonNewsSource:
+    """News from the bundled JSON file — keeps the container fully self-contained.
+
+    Deliberately shaped like a repository so a database-backed source can
+    replace it behind ``GET /api/news`` without touching the endpoint.
+    """
+
+    def __init__(self, path: Path) -> None:
+        items = [
+            NewsItem(**raw) for raw in json.loads(path.read_text(encoding="utf-8"))
+        ]
+        self._items = sorted(items, key=lambda item: item.date, reverse=True)
+
+    def latest(self, limit: int | None = None) -> list[NewsItem]:
+        return self._items[:limit]
+
+
+news_source = JsonNewsSource(Path(__file__).parent / "news.json")
+
+
 @app.get("/health")
 def health() -> dict[str, str]:
     """Liveness probe — returns 200 with a tiny JSON body."""
@@ -75,6 +112,12 @@ def contact(payload: ContactRequest) -> dict[str, bool]:
         payload.message,
     )
     return {"ok": True}
+
+
+@app.get("/api/news")
+def news(limit: Annotated[int | None, Query(ge=1, le=50)] = None) -> list[NewsItem]:
+    """Return news items, newest first, optionally capped to ``limit``."""
+    return news_source.latest(limit)
 
 
 @app.get("/")

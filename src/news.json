@@ -1,0 +1,42 @@
+[
+  {
+    "date": "2026-05-20",
+    "category": "press",
+    "title_en": "d2future opens its agent evaluation harness to clients",
+    "title_ja": "AIエージェント評価ハーネスをクライアント向けに公開",
+    "excerpt_en": "The internal toolkit we use to test production agents — scenario suites, regression runs, and tool-call tracing — is now part of every agent engagement.",
+    "excerpt_ja": "本番エージェントの検証に社内で使ってきたツールキット(シナリオ評価・回帰テスト・ツール呼び出しトレース)を、すべてのエージェント案件で提供開始しました。"
+  },
+  {
+    "date": "2026-03-09",
+    "category": "tech",
+    "title_en": "Case note: a data platform for a Tokyo retailer",
+    "title_ja": "事例:都内小売企業のデータ基盤を構築",
+    "excerpt_en": "How we replaced overnight batch jobs with an incremental pipeline the client's own team now operates — anonymized notes from a six-month engagement.",
+    "excerpt_ja": "夜間バッチを増分パイプラインに置き換え、運用をクライアントチームへ引き継ぐまで。6か月の支援から得た知見を匿名化して紹介します。"
+  },
+  {
+    "date": "2026-01-15",
+    "category": "news",
+    "title_en": "d2future moves to a new office in Meguro",
+    "title_ja": "目黒の新オフィスへ移転しました",
+    "excerpt_en": "More desks, a proper whiteboard wall, and space to host client working sessions.",
+    "excerpt_ja": "デスクを増やし、ホワイトボードの壁と、クライアントとのワーキングセッションを開ける場所を用意しました。"
+  },
+  {
+    "date": "2025-11-04",
+    "category": "tech",
+    "title_en": "Talk: running LLM agents in production, at Cloud Native Days Tokyo",
+    "title_ja": "Cloud Native Days Tokyo にて「本番環境でのLLMエージェント運用」を発表",
+    "excerpt_en": "Notes from our session on observability, fallbacks, and why most agent failures are really data failures.",
+    "excerpt_ja": "オブザーバビリティ、フォールバック設計、そして「エージェント障害の多くは実はデータ障害である」理由について講演しました。"
+  },
+  {
+    "date": "2025-09-01",
+    "category": "news",
+    "title_en": "We're hiring: forward-deployed engineers (Tokyo)",
+    "title_ja": "採用情報:フォワードデプロイドエンジニア(東京)",
+    "excerpt_en": "We are looking for senior engineers who want to ship inside client teams. Japanese helpful, not required.",
+    "excerpt_ja": "クライアントチームの中で開発したいシニアエンジニアを募集しています。日本語は歓迎ですが必須ではありません。"
+  }
+]
