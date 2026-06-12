@@ -19,3 +19,6 @@ docs/
 .idea/
 .vscode/
 *.swp
+
+# Environment files (never commit credentials)
+*.env

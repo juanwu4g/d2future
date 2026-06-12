@@ -1,0 +1,39 @@
+# Optional (the brief allows it): `docker compose up` runs the site with a
+# local Postgres behind the news section, seeded automatically. The plain
+# `docker build` + `docker run` flow keeps working without any of this —
+# the app falls back to bundled JSON when DATABASE_URL is unset.
+#
+# The credentials below are for the throwaway local database only; the
+# production string (Supabase) is injected at runtime and never committed.
+services:
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/postgres
+    depends_on:
+      db:
+        condition: service_healthy
+      seed:
+        condition: service_completed_successfully
+
+  # One-shot job: creates the news table and loads the bundled items.
+  seed:
+    build: .
+    entrypoint: ["python", "seed_news.py"]
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/postgres
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 3s
+      retries: 10

@@ -19,3 +19,7 @@ CLAUDE.md
 .idea
 .vscode
 *.swp
+
+# Environment files and compose (not needed in the image)
+*.env
+docker-compose.yml
