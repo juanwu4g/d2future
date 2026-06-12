@@ -65,6 +65,7 @@
       "skip": "Skip to content",
       "nav.about": "About",
       "nav.services": "Services",
+      "nav.news": "News",
       "nav.contact": "Contact",
       "nav.cta": "Let's talk",
       "hero.eyebrow": "Tokyo · Forward-Deployed Engineering",
@@ -103,6 +104,10 @@
       "services.data.title": "Data Engineering",
       "services.data.body":
         "Pipelines and platforms that turn raw data into something teams trust — tested, documented, and ready for analytics and AI.",
+      "news.title": "News",
+      "news.cat.press": "Press",
+      "news.cat.news": "News",
+      "news.cat.tech": "Tech",
       "contact.title": "Contact",
       "contact.intro": "Tell us what you are building. We read every message.",
       "contact.name": "Name",
@@ -118,6 +123,7 @@
       "skip": "本文へスキップ",
       "nav.about": "会社概要",
       "nav.services": "サービス",
+      "nav.news": "ニュース",
       "nav.contact": "お問い合わせ",
       "nav.cta": "相談する",
       "hero.eyebrow": "東京・フォワードデプロイド・エンジニアリング",
@@ -156,6 +162,10 @@
       "services.data.title": "データエンジニアリング",
       "services.data.body":
         "生のデータを信頼できる資産へ。テストされ、文書化され、分析とAIに使えるパイプラインと基盤を構築します。",
+      "news.title": "ニュース",
+      "news.cat.press": "プレス",
+      "news.cat.news": "ニュース",
+      "news.cat.tech": "技術",
       "contact.title": "お問い合わせ",
       "contact.intro": "構想をお聞かせください。すべてのメッセージに目を通します。",
       "contact.name": "お名前",
@@ -192,6 +202,7 @@
       // Show the language you can switch TO.
       toggle.textContent = next === "en" ? "日本語" : "English";
     }
+    renderNews();
   }
 
   const toggle = document.getElementById("lang-toggle");
@@ -200,4 +211,59 @@
       applyLanguage(lang === "en" ? "ja" : "en");
     });
   }
+
+  // --- News section -> GET /api/news -------------------------------------
+  // Items carry both languages, so the toggle re-renders without refetching.
+  let newsItems = [];
+
+  function formatNewsDate(iso) {
+    const date = new Date(iso + "T00:00:00");
+    return date.toLocaleDateString(lang === "ja" ? "ja-JP" : "en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  }
+
+  function renderNews() {
+    const section = document.getElementById("news");
+    const list = document.getElementById("news-list");
+    if (!section || !list) return;
+    section.hidden = newsItems.length === 0;
+    list.textContent = "";
+    newsItems.forEach(function (item) {
+      const li = document.createElement("li");
+      li.className = "news-item";
+
+      const meta = document.createElement("div");
+      meta.className = "news-meta";
+      const time = document.createElement("time");
+      time.dateTime = item.date;
+      time.textContent = formatNewsDate(item.date);
+      const tag = document.createElement("span");
+      tag.className = "news-tag";
+      tag.textContent = t("news.cat." + item.category) || item.category;
+      meta.append(time, tag);
+
+      const title = document.createElement("h3");
+      title.textContent = lang === "ja" ? item.title_ja : item.title_en;
+      const excerpt = document.createElement("p");
+      excerpt.textContent = lang === "ja" ? item.excerpt_ja : item.excerpt_en;
+
+      li.append(meta, title, excerpt);
+      list.appendChild(li);
+    });
+  }
+
+  fetch("/api/news?limit=3")
+    .then(function (res) {
+      return res.ok ? res.json() : [];
+    })
+    .then(function (items) {
+      newsItems = items;
+      renderNews();
+    })
+    .catch(function () {
+      // Leave the section hidden — news must never break the page.
+    });
 })();

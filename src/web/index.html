@@ -29,6 +29,7 @@
         <ul class="nav-links">
           <li><a href="#about" data-i18n="nav.about">About</a></li>
           <li><a href="#services" data-i18n="nav.services">Services</a></li>
+          <li><a href="#news" data-i18n="nav.news">News</a></li>
           <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
         </ul>
         <a class="nav-cta" href="#contact" data-i18n="nav.cta">Let's talk</a>
@@ -210,8 +211,16 @@
         </div>
       </section>
 
+      <!-- News (rendered client-side from GET /api/news) -->
+      <section id="news" class="section" hidden>
+        <div class="container">
+          <h2 data-i18n="news.title">News</h2>
+          <ol id="news-list" class="news-list"></ol>
+        </div>
+      </section>
+
       <!-- Contact -->
-      <section id="contact" class="section">
+      <section id="contact" class="section section-alt">
         <div class="container container-narrow">
           <h2 data-i18n="contact.title">Contact</h2>
           <p data-i18n="contact.intro">
