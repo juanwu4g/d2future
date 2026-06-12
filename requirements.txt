@@ -2,6 +2,11 @@
 fastapi==0.115.6
 uvicorn[standard]==0.34.0
 
+# News database (optional at runtime — the app falls back to bundled JSON
+# when DATABASE_URL is unset, so these only activate against Postgres/Supabase).
+sqlalchemy==2.0.36
+psycopg[binary]==3.2.3
+
 # Test-only dependencies. Installed in dev/CI; excluded from the final image
 # via a separate pip install step is overkill for this size, so they ship too —
 # httpx is what Starlette's TestClient uses under the hood.
