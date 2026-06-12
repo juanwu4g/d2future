@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#0f1115" />
+  <rect width="63" height="63" x="0.5" y="0.5" rx="13.5" fill="none" stroke="#2a2f40" />
+  <text
+    x="32"
+    y="43"
+    font-family="system-ui, -apple-system, sans-serif"
+    font-size="28"
+    font-weight="700"
+    fill="#5b8cff"
+    text-anchor="middle"
+  >d2</text>
+</svg>
